@@ -1,90 +1,103 @@
 openapi: 3.0.0
 info:
-  title: JOBS API
+  title: JOBS_API
   contact: {}
-  version: "1.0"
+  version: '1.0'
 servers:
-  - url:https://web-production-bee1.up.railway.app/api/v1
-    variables: {}
+- url: https://web-production-bee1.up.railway.app/api/v1
+  variables: {}
 paths:
   /auth/register:
     post:
       tags:
-        - Auth
+      - AUTH
       summary: Register
       operationId: Register
       parameters: []
       requestBody:
-        description: ""
+        description: ''
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/RegisterRequest"
+              allOf:
+              - $ref: '#/components/schemas/RegisterRequest'
+              - example:
+                  name: Agbaje
+                  email: michael1@gmail.com
+                  password: 66766dff
             example:
               name: Agbaje
-              email: michael11@gmail.com
+              email: michael1@gmail.com
               password: 66766dff
         required: true
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
       security: []
   /auth/login:
     post:
       tags:
-        - Auth
+      - AUTH
       summary: login
       operationId: login
       parameters: []
       requestBody:
-        description: ""
+        description: ''
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/loginrequest"
+              allOf:
+              - $ref: '#/components/schemas/loginrequest'
+              - example:
+                  email: michael1@gmail.com
+                  password: 66766dff
             example:
-              email: michael11@gmail.com
+              email: michael1@gmail.com
               password: 66766dff
         required: true
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
       security: []
   /jobs:
     get:
       tags:
-        - JOBS
+      - JOBS
       summary: Get all jobs
       operationId: Getalljobs
       parameters: []
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
     post:
       tags:
-        - JOBS
+      - JOBS
       summary: Create Jobs
       operationId: CreateJobs
       parameters: []
       requestBody:
-        description: ""
+        description: ''
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateJobsRequest"
+              allOf:
+              - $ref: '#/components/schemas/CreateJobsRequest'
+              - example:
+                  company: position
+                  position: DevOps
             example:
               company: position
               position: DevOps
         required: true
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
   /jobs/{id}:
@@ -94,39 +107,40 @@ paths:
         schema:
           type: string
         required: true
-        description: The job ID
+        description: The jobs ID
     get:
       tags:
-        - JOBS
+      - JOBS
       summary: Get Job
       operationId: GetJob
       parameters: []
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
+  
     patch:
       tags:
-        - JOBS
+      - JOBS
       summary: Update Job
       operationId: UpdateJob
       parameters: []
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
-
+  
     delete:
       tags:
-        - JOBS
+      - JOBS
       summary: Delet Jobs
       operationId: DeletJobs
       parameters: []
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
 components:
@@ -134,9 +148,9 @@ components:
     RegisterRequest:
       title: RegisterRequest
       required:
-        - name
-        - email
-        - password
+      - name
+      - email
+      - password
       type: object
       properties:
         name:
@@ -147,13 +161,13 @@ components:
           type: string
       example:
         name: Agbaje
-        email: michael11@gmail.com
+        email: michael1@gmail.com
         password: 66766dff
     loginrequest:
       title: loginrequest
       required:
-        - email
-        - password
+      - email
+      - password
       type: object
       properties:
         email:
@@ -161,13 +175,13 @@ components:
         password:
           type: string
       example:
-        email: michael11@gmail.com
+        email: michael1@gmail.com
         password: 66766dff
     CreateJobsRequest:
       title: CreateJobsRequest
       required:
-        - company
-        - position
+      - company
+      - position
       type: object
       properties:
         company:
@@ -182,9 +196,9 @@ components:
       type: http
       scheme: bearer
 security:
-  - bearer: []
+- bearer: []
 tags:
-  - name: Auth
-    description: ""
-  - name: JOBS
-    description: ""
+- name: AUTH
+  description: ''
+- name: JOBS
+  description: ''
