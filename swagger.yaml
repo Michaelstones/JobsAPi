@@ -4,7 +4,7 @@ info:
   contact: {}
   version: '1.0'
 servers:
-- url: https://web-production-bee1.up.railway.app/api/v1
+- url: https://jobsapi-production-2dcc.up.railway.app/api-docs/
   variables: {}
 paths:
   /auth/register:
